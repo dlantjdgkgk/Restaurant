@@ -1,15 +1,32 @@
 import styled from 'styled-components';
 
+export const Header = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 200px;
+    margin-bottom: 50px;
+    .logo {
+        display: flex;
+    }
+    @media only screen and (max-width: 600px) {
+        .logo {
+            font-size: 10px;
+        }
+    }
+`;
+
 export const Form = styled.form`
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 300px;
     input {
         width: 500px;
         height: 30px;
         padding: 20px;
+        margin-bottom: 20px;
     }
     button {
         margin-top: 30px;
@@ -33,5 +50,13 @@ export const Form = styled.form`
         color: black;
         font-weight: 700;
         padding: 12px;
+    }
+    @media only screen and (max-width: 600px) {
+        input {
+            width: 250px;
+        }
+        button {
+            width: 300px;
+        }
     }
 `;

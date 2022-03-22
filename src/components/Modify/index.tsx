@@ -1,25 +1,34 @@
-import { Submit } from './style';
+import { Submit, Header } from './style';
 import Link from 'next/link';
 import useModify from './useHook';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 const Modify = () => {
-    const { handleSubmit, title, handleTitle, image } = useModify();
+    const {
+        handleSubmit,
+        title,
+        handleTitle,
+        image,
+        handleSearchWord,
+        searchWord,
+        content,
+        handleContent,
+    } = useModify();
 
     return (
         <>
-            <Submit method='post' action='/' onSubmit={handleSubmit}>
+            <Header>
                 <Link href='/'>
-                    <img
-                        src='/create.PNG'
-                        width='200'
-                        height='200'
-                        alt='My Image'
-                        className='title'
-                    ></img>
+                    <div className='logo'>
+                        <FontAwesomeIcon icon={faStar} size='5x' color='red' />
+                        <h1> Blog </h1>
+                    </div>
                 </Link>
-
-                <h1>블로그 글 작성하기</h1>
-                <div>
+            </Header>
+            <Submit method='post' action='/' onSubmit={handleSubmit}>
+                <h1>블로그 글 수정하기</h1>
+                <div className='form'>
                     <div>
                         <span>제목</span>
                         <input
@@ -30,15 +39,28 @@ const Modify = () => {
                         />
                     </div>
                     <div>
-                        <br></br>
-                        <span className='upload'>업로드</span>
+                        <span>리뷰</span>
                         <input
-                            type='file'
-                            className='imgInput'
-                            accept='image/*'
-                            name='img'
-                            ref={image}
+                            id='content'
+                            type='text'
+                            value={content}
+                            onChange={handleContent}
                         />
+                    </div>
+                    <div>
+                        <span>음식점 검색</span>
+                        <input
+                            id='searchWord'
+                            type='text'
+                            value={searchWord}
+                            onChange={handleSearchWord}
+                            placeholder=' 지점까지 작성해주세요 ex. (마천점)'
+                        />
+                    </div>
+                    <div className='upload'>
+                        <br></br>
+                        <span>업로드</span>
+                        <input type='file' accept='image/*' name='img' />
                     </div>
                 </div>
 

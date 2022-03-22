@@ -1,12 +1,22 @@
-import { Form } from './style';
+import { Header, Form } from './style';
 import Link from 'next/link';
 import useLogin from './useHook';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 const Login = () => {
     const { handleSubmit, handleEmail, handlePw, email, password } = useLogin();
 
     return (
         <>
+            <Header>
+                <Link href='/'>
+                    <div className='logo'>
+                        <FontAwesomeIcon icon={faStar} size='5x' color='red' />
+                        <h1> Blog </h1>
+                    </div>
+                </Link>
+            </Header>
             <Form method='post' action='/' onSubmit={handleSubmit}>
                 <input
                     type='text'
@@ -14,7 +24,6 @@ const Login = () => {
                     value={email}
                     onChange={handleEmail}
                 />
-                <br></br>
                 <input
                     type='password'
                     placeholder='pw'

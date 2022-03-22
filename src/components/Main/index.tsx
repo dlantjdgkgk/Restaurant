@@ -104,10 +104,9 @@ const Main = () => {
                                         <CategoryImage
                                             url={`${images[index]}`}
                                         />
+                                        <div className='shadow' />
                                         <div className='category_description'>
-                                            <span>
-                                                <b>{category.description}</b>
-                                            </span>
+                                            <p>{category.description}</p>
                                         </div>
                                     </a>
                                 </Link>

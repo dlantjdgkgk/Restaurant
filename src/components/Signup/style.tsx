@@ -1,19 +1,33 @@
 import styled from 'styled-components';
 
+export const Header = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 200px;
+    .logo {
+        display: flex;
+        margin-bottom: 20px;
+    }
+    @media only screen and (max-width: 600px) {
+        .logo {
+            font-size: 10px;
+        }
+    }
+`;
+
 export const Form = styled.form`
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    h3 {
-        margin-top: 200px;
-        margin-bottom: 40px;
-    }
     input {
         width: 500px;
         padding: 20px;
-        margin-bottom: 30px;
+    }
+    #nickname {
+        margin-bottom: 20px;
     }
     button {
         width: 540px;
@@ -26,5 +40,15 @@ export const Form = styled.form`
         font-weight: 1000;
     }
     span {
+        padding: 20px;
+    }
+
+    @media only screen and (max-width: 600px) {
+        input {
+            width: 250px;
+        }
+        button {
+            width: 300px;
+        }
     }
 `;

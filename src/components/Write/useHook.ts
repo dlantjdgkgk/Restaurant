@@ -11,7 +11,7 @@ const useWrite = () => {
     const [content, setContent] = useState('');
     const [category_data, setcategory_data] = useState(null);
     const [category, setCategory] = useState(null);
-    const [cookies, setCookie] = useCookies([]);
+    const [cookies, setCookie, removeCookie] = useCookies([]);
     const [searchWord, setSearchWord] = useState('');
     const dispatch = useDispatch();
     const router = useRouter();
@@ -19,6 +19,10 @@ const useWrite = () => {
     const token = cookies?.token?.split(' ')[1];
     const id = jwt.decode(token);
     const userId = id?.id;
+
+    const Logout = async () => {
+        await removeCookie('token');
+    };
 
     useEffect(() => {
         const appendAPI = async () => {
@@ -104,6 +108,8 @@ const useWrite = () => {
         handleContent,
         searchWord,
         handleSearchWord,
+        Logout,
+        cookies,
     };
 };
 

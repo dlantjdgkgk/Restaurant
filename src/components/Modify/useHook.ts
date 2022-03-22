@@ -6,6 +6,8 @@ import { useRouter } from 'next/router';
 import { useRef } from 'react';
 const useModify = () => {
     const [title, setTitle] = useState(null);
+    const [searchWord, setSearchWord] = useState(null);
+    const [content, setContent] = useState(null);
     const [cookies, setCookie] = useCookies([]);
     const [imgurl, setImgurl] = useState('');
     const router = useRouter();
@@ -17,12 +19,22 @@ const useModify = () => {
     useEffect(() => {
         if (router.query) {
             setTitle(router.query.title);
+            setSearchWord(router.query.search_word);
+            setContent(router.query.content);
             setImgurl(`${router.query.img}`);
         }
     }, [router.query]);
 
     const handleTitle = (e) => {
         setTitle(e.target.value);
+    };
+
+    const handleSearchWord = (e) => {
+        setSearchWord(e.target.value);
+    };
+
+    const handleContent = (e) => {
+        setContent(e.target.value);
     };
 
     const handleSubmit = (e) => {
@@ -33,8 +45,10 @@ const useModify = () => {
         }
         const updateAPI = async () => {
             const payload = new FormData();
-            payload.append('img', image.current?.files[0]);
+            payload.append('img', e.target.img.files[0]);
             payload.append('title', title);
+            payload.append('searchWord', searchWord);
+            payload.append('content', content);
             payload.append('userId', userId);
             await axios.put(
                 `https://api.digital-hamster.net/documents/${router.query.documentId}`,
@@ -54,8 +68,12 @@ const useModify = () => {
     return {
         handleSubmit,
         title,
+        searchWord,
+        handleSearchWord,
         handleTitle,
         image,
+        content,
+        handleContent,
     };
 };
 

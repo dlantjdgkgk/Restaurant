@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
-import { useSelector, useDispatch } from '../../redux/hooks';
+import { useSelector } from '../../redux/hooks';
 import { shallowEqual } from 'react-redux';
 import axios from 'axios';
 
@@ -18,7 +18,6 @@ const useMain = () => {
 
     const Logout = async () => {
         await removeCookie('token');
-        console.log(5);
     };
 
     const appendAPI = async () => {

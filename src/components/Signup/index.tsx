@@ -1,5 +1,8 @@
-import { Form } from './style';
+import { Form, Header } from './style';
 import useSignup from './useHook';
+import Link from 'next/link';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 const Signup = () => {
     const {
@@ -19,8 +22,15 @@ const Signup = () => {
 
     return (
         <>
+            <Header>
+                <Link href='/'>
+                    <div className='logo'>
+                        <FontAwesomeIcon icon={faStar} size='5x' color='red' />
+                        <h1> Blog </h1>
+                    </div>
+                </Link>
+            </Header>
             <Form onSubmit={handleSubmit}>
-                <h3>회원가입</h3>
                 <input
                     id='email'
                     type='text'
@@ -32,6 +42,7 @@ const Signup = () => {
 
                 <input
                     type='text'
+                    id='nickname'
                     placeholder='닉네임 입력'
                     value={nickname}
                     onChange={handleNickname}

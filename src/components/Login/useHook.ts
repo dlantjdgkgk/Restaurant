@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import Router from 'next/router';
 import { useCookies } from 'react-cookie';
@@ -49,6 +49,12 @@ const useLogin = () => {
         loginAPI();
     };
 
-    return { handleSubmit, handleEmail, handlePw, email, password };
+    return {
+        handleSubmit,
+        handleEmail,
+        handlePw,
+        email,
+        password,
+    };
 };
 export default useLogin;

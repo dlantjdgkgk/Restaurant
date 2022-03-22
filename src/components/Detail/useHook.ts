@@ -21,7 +21,7 @@ const useDetail = () => {
     }, []);
 
     // 특정 아이디 게시글 조회 완료
-    const { data, error, isValidation } = useCacheApi(
+    const { data } = useCacheApi(
         () => {
             if (documentId === undefined) {
                 return null;

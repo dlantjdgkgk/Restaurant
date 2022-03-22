@@ -1,6 +1,9 @@
-import { Submit } from './style';
+import { Submit, Header } from './style';
 import Select from 'react-select';
 import useWrite from './useHook';
+import Link from 'next/link';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 const Write = () => {
     const {
@@ -15,9 +18,36 @@ const Write = () => {
         handleContent,
         searchWord,
         handleSearchWord,
+        cookies,
+        Logout,
     } = useWrite();
     return (
         <>
+            <Header>
+                <Link href='/'>
+                    <div className='logo'>
+                        <FontAwesomeIcon icon={faStar} size='5x' color='red' />
+                        <h1> Blog </h1>
+                    </div>
+                </Link>
+
+                <ul className='function'>
+                    {!cookies.token ? (
+                        <li>
+                            <Link href='/login'>
+                                <a>로그인</a>
+                            </Link>
+                        </li>
+                    ) : (
+                        <li>
+                            <Link href='/login'>
+                                <button onClick={Logout}>로그아웃</button>
+                            </Link>
+                        </li>
+                    )}
+                </ul>
+            </Header>
+
             <Submit method='post' action='/' onSubmit={handleSubmit}>
                 <h1>블로그 글 작성하기</h1>
 
