@@ -3,7 +3,7 @@ import axios from 'axios';
 import Router from 'next/router';
 import { useCookies } from 'react-cookie';
 import { useDispatch } from '../../redux/hooks';
-import { updateTemporaryMember } from '../../redux/rootReducer';
+import { updateFormalMember } from '../../redux/rootReducer';
 
 const useLogin = () => {
     const [email, setEmail] = useState('');
@@ -28,8 +28,8 @@ const useLogin = () => {
             'https://api.digital-hamster.net/login',
             payload
         );
-        if (response?.data?.result?.formalMember === false) {
-            dispatch(updateTemporaryMember(false));
+        if (response?.data?.formalMember === false) {
+            dispatch(updateFormalMember(false));
         }
         setCookie('token', `Bearer ${response?.data?.result?.Token}`);
         Router.push('/');

@@ -30,7 +30,6 @@ export const Popular = styled.div`
         flex-direction: column;
         justify-content: center;
         padding: 20px;
-        color: red;
         font-size: 24px;
     }
     @media only screen and (max-width: 720px) {

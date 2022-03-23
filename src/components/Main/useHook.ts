@@ -9,9 +9,9 @@ const useMain = () => {
     const images = ['Pizza', 'Chicken', 'Burger', 'Chinese', 'Noodle', 'Pasta'];
     const [category_data, setcategory_data] = useState(null);
 
-    const { temporaryMember } = useSelector(
+    const { formalMember } = useSelector(
         (state) => ({
-            temporaryMember: state.temporaryMember,
+            formalMember: state.formalMember,
         }),
         shallowEqual // 객체 반환할 때 필요
     );
@@ -42,6 +42,7 @@ const useMain = () => {
         images,
         category_data,
         Logout,
+        formalMember,
     };
 };
 

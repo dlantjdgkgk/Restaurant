@@ -7,9 +7,8 @@ import useMain from './useHook';
 import Modal from 'react-modal';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
-import { updateTemporaryMember } from '../../redux/rootReducer';
-import { useSelector, useDispatch } from '../../redux/hooks';
-import { shallowEqual } from 'react-redux';
+import { updateFormalMember } from '../../redux/rootReducer';
+import { useDispatch } from '../../redux/hooks';
 import React from 'react';
 
 const customStyles = {
@@ -24,14 +23,8 @@ const customStyles = {
     },
 };
 const Main = () => {
-    const { cookies, images, category_data, Logout } = useMain();
+    const { cookies, images, category_data, Logout, formalMember } = useMain();
     const dispatch = useDispatch();
-    const { temporaryMember } = useSelector(
-        (state) => ({
-            temporaryMember: state.temporaryMember,
-        }),
-        shallowEqual // 객체 반환할 때 필요
-    );
 
     return (
         <>
@@ -71,11 +64,10 @@ const Main = () => {
                             )}
                         </ul>
                     </Header>
-
                     <Modal
-                        isOpen={!temporaryMember}
+                        isOpen={formalMember === false}
                         onRequestClose={() =>
-                            dispatch(updateTemporaryMember(true))
+                            dispatch(updateFormalMember(true))
                         }
                         style={customStyles}
                     >

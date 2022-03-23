@@ -29,6 +29,9 @@ export const Header = styled.div`
     .logo {
         display: flex;
     }
+    ul {
+        padding: 0;
+    }
     li {
         list-style: none;
         color: black;

@@ -2,8 +2,10 @@ import { AppProps } from 'next/app';
 import { wrapper } from '../redux/store';
 import Head from 'next/head';
 import { CacheApiConfig } from 'react-cache-api';
+import { useSelector } from '../redux/hooks';
 
 const app = ({ Component, pageProps }: AppProps) => {
+    console.log(useSelector((store) => store));
     return (
         <>
             <Head>

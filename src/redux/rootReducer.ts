@@ -7,19 +7,19 @@ interface IState {
         description: string;
         value: string;
     }[];
-    temporaryMember: boolean;
+    formalMember: boolean;
 }
 
 const initialState: IState = {
     startTime: '',
     term: '',
     categoriesResult: [],
-    temporaryMember: true,
+    formalMember: null,
 };
 
 export const rootReducer = createSlice({
     name: 'rootReducer',
-    initialState: initialState,
+    initialState,
     reducers: {
         updateStartTime: (state, { payload }) => {
             state.startTime = payload;
@@ -30,8 +30,8 @@ export const rootReducer = createSlice({
         updateCategoriesResult: (state, { payload }) => {
             state.categoriesResult = payload;
         },
-        updateTemporaryMember: (state, { payload }) => {
-            state.temporaryMember = payload;
+        updateFormalMember: (state, { payload }) => {
+            state.formalMember = payload;
         },
     },
 });
@@ -40,7 +40,7 @@ export const {
     updateStartTime,
     updateTerm,
     updateCategoriesResult,
-    updateTemporaryMember,
+    updateFormalMember,
 } = rootReducer.actions;
 
 export default rootReducer.reducer;
