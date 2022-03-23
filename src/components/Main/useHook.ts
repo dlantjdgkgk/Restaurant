@@ -6,7 +6,7 @@ import axios from 'axios';
 
 const useMain = () => {
     const [cookies, setCookie, removeCookie] = useCookies([]);
-    const images = ['Pizza', 'Chicken', 'Burger', 'Chinese', 'Noodle', 'Pasta'];
+    const images = ['pizza', 'chicken', 'burger', 'chinese', 'noodle', 'pasta'];
     const [category_data, setcategory_data] = useState(null);
 
     const { formalMember } = useSelector(
