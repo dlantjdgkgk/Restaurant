@@ -79,7 +79,7 @@ const Main = () => {
 
                     <Carousel>
                         {category_data?.map((category, i) => {
-                            return <Images url={`${images[i]}`} />;
+                            return <Images key={i} url={`${images[i]}`} />;
                         })}
                     </Carousel>
 
