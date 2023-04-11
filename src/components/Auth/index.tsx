@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import axios from 'axios';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import { apiInstance } from '../../pages/api/setting';
 
 const Auth = () => {
     const router = useRouter();
@@ -13,9 +14,7 @@ const Auth = () => {
         const AuthAPI = async () => {
             if (authcode) {
                 try {
-                    await axios.post(
-                        `https://api.digital-hamster.net/auths/${authcode}`
-                    );
+                    await apiInstance.post(`/auths/${authcode}`);
                     Setment('인증 성공입니다 축하드려요');
                 } catch (ex) {
                     if (ex.response && ex.response.status === 400) {

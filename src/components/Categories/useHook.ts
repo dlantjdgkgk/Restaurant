@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 import { useCookies } from 'react-cookie';
 import Router, { useRouter } from 'next/router';
 import axios from 'axios';
+import { apiInstance } from '../../pages/api/setting';
 
 const useCategories = () => {
     const router = useRouter();
@@ -37,15 +38,12 @@ const useCategories = () => {
             userId: permission,
         };
         const deleteAPI = async () => {
-            await axios.delete(
-                `https://api.digital-hamster.net/documents/${data?.result?.[0]?.id}`,
-                {
-                    data: payload,
-                    headers: {
-                        Authorization: `${cookies.token}`,
-                    },
-                }
-            );
+            await apiInstance.delete(`/documents/${data?.result?.[0]?.id}`, {
+                data: payload,
+                headers: {
+                    Authorization: `${cookies.token}`,
+                },
+            });
         };
         Router.push('/');
         deleteAPI();

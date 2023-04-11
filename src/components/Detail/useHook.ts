@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { useCacheApi } from 'react-cache-api';
 import { getUserIdByToken } from '../../utils/Util';
 import { useCookies } from 'react-cookie';
+import { apiInstance } from '../../pages/api/setting';
 
 const useDetail = () => {
     const router = useRouter();
@@ -68,15 +69,12 @@ const useDetail = () => {
             userId: loginUserId,
         };
         const deleteAPI = async () => {
-            await axios.delete(
-                `https://api.digital-hamster.net/documents/${documentId}`,
-                {
-                    data: payload,
-                    headers: {
-                        Authorization: `${cookies.token}`,
-                    },
-                }
-            );
+            await apiInstance.delete(`/documents/${documentId}`, {
+                data: payload,
+                headers: {
+                    Authorization: `${cookies.token}`,
+                },
+            });
         };
         Router.push('/');
         deleteAPI();

@@ -4,6 +4,7 @@ import Router from 'next/router';
 import { useCookies } from 'react-cookie';
 import { useDispatch } from '../../redux/hooks';
 import { updateFormalMember } from '../../redux/rootReducer';
+import { apiInstance } from '../../pages/api/setting';
 
 const useLogin = () => {
     const [email, setEmail] = useState('');
@@ -24,10 +25,7 @@ const useLogin = () => {
             email: email,
             password: password,
         };
-        const response: any = await axios.post(
-            'https://api.digital-hamster.net/login',
-            payload
-        );
+        const response = await apiInstance.post('/login', payload);
         if (response?.data?.formalMember === false) {
             dispatch(updateFormalMember(false));
         }

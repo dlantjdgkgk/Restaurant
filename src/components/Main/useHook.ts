@@ -3,6 +3,7 @@ import { useCookies } from 'react-cookie';
 import { useSelector } from '../../redux/hooks';
 import { shallowEqual } from 'react-redux';
 import axios from 'axios';
+import { apiInstance } from '../../pages/api/setting';
 
 const useMain = () => {
     const [cookies, setCookie, removeCookie] = useCookies([]);
@@ -21,8 +22,8 @@ const useMain = () => {
     };
 
     const appendAPI = async () => {
-        await axios
-            .get('https://api.digital-hamster.net/categories')
+        await apiInstance
+            .get('/categories')
             .then((res) => {
                 console.log(res);
                 setcategory_data(res.data.result);

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Router from 'next/router';
 import axios from 'axios';
+import { apiInstance } from '../../pages/api/setting';
 
 const useSignup = () => {
     const [email, setEmail] = useState('');
@@ -74,10 +75,7 @@ const useSignup = () => {
             nickname: nickname,
             password: password,
         };
-        const signup = await axios.post(
-            'https://api.digital-hamster.net/users',
-            payload
-        );
+        const signup = await apiInstance.post('/users', payload);
         Router.push('/');
         setRes(signup);
     };

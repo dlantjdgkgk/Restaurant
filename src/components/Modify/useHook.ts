@@ -4,6 +4,7 @@ import { useCookies } from 'react-cookie';
 import jwt from 'jsonwebtoken';
 import { useRouter } from 'next/router';
 import { useRef } from 'react';
+import { apiInstance } from '../../pages/api/setting';
 const useModify = () => {
     const [title, setTitle] = useState(null);
     const [searchWord, setSearchWord] = useState(null);
@@ -50,8 +51,8 @@ const useModify = () => {
             payload.append('searchWord', searchWord);
             payload.append('content', content);
             payload.append('userId', userId);
-            await axios.put(
-                `https://api.digital-hamster.net/documents/${router.query.documentId}`,
+            await apiInstance.put(
+                `/documents/${router.query.documentId}`,
                 payload,
                 {
                     headers: {

@@ -5,6 +5,7 @@ import { updateCategoriesResult } from '../../redux/rootReducer';
 import { useCookies } from 'react-cookie';
 import jwt from 'jsonwebtoken';
 import { useRouter } from 'next/router';
+import { apiInstance } from '../../pages/api/setting';
 
 const useWrite = () => {
     const [title, setTitle] = useState('');
@@ -26,9 +27,7 @@ const useWrite = () => {
 
     useEffect(() => {
         const appendAPI = async () => {
-            setcategory_data(
-                await axios.get('https://api.digital-hamster.net/categories')
-            );
+            setcategory_data(await apiInstance.get('/categories'));
         };
         appendAPI();
     }, []);
@@ -74,15 +73,11 @@ const useWrite = () => {
 
         const writeAPI = async () => {
             try {
-                const write = await axios.post(
-                    'https://api.digital-hamster.net/documents',
-                    formData,
-                    {
-                        headers: {
-                            Authorization: `${cookies.token}`,
-                        },
-                    }
-                );
+                const write = await apiInstance.post('/documents', formData, {
+                    headers: {
+                        Authorization: `${cookies.token}`,
+                    },
+                });
             } catch (ex) {
                 if (ex.response && ex.response.status === 400) {
                     alert(ex?.response?.data?.message);
