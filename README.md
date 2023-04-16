@@ -13,3 +13,4 @@
 
 - Next.js, Axios, Redux-Toolkit
 - styled-components
+- react-cookie, react-datepicker, jsonwebtoken, react-responsive-carousel
